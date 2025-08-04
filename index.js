@@ -11,8 +11,9 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false }));
 
+//mongodb://localhost:27017/ksrtc
 // Connect to MongoDB
-mongoose.connect('mongodb://localhost:27017/ksrtc')
+mongoose.connect('mongodb+srv://gourishpnaik:vwAeuFmGNjFkeipb@hotel-be.wxnbm4u.mongodb.net/?retryWrites=true&w=majority&appName=hotel-be')
     .then(() => console.log("Connected to MongoDB"))
     .catch(err => console.error("MongoDB connection error:", err));
 
