@@ -82,7 +82,7 @@ app.post("/api/KsrtcOtdata/Newduty", async (req, res) => {
 });
 
 // Create new employee
-app.post("/api/createEmployee", async (req, res) => {
+ app.post("/api/createEmployee", async (req, res) => {
     const { id, ...duties } = req.body;
 
     try {
