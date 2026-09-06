@@ -2,7 +2,12 @@
 // in the frontend (view-ot.component.ts `dutyListData`) into MongoDB.
 // Safe to re-run - existing dutyIds are left untouched (upsert with $setOnInsert).
 require("dotenv").config();
+const dns = require("dns");
 const mongoose = require("mongoose");
+
+// See index.js - some networks fail Node's own SRV DNS lookups for
+// mongodb+srv:// URIs even though the OS resolver works fine.
+dns.setServers(["8.8.8.8", "1.1.1.1"]);
 
 if (!process.env.MONGO_URI) {
     console.error("MONGO_URI is not set. Create a .env file (see .env.example).");

@@ -1,8 +1,15 @@
 require("dotenv").config();
+const dns = require("dns");
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const bodyParser = require('body-parser');
+
+// Some networks (notably certain Windows/router DNS setups) can resolve the OS
+// resolver fine but make Node's own resolver fail SRV lookups with
+// ECONNREFUSED for mongodb+srv:// URIs. Pointing Node at public resolvers
+// avoids that; harmless on hosts where the default resolver already works.
+dns.setServers(["8.8.8.8", "1.1.1.1"]);
 
 const app = express();
 const PORT = process.env.PORT || 8000;
