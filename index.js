@@ -197,6 +197,18 @@ app.put("/api/KsrtcOtdata/updateData", async (req, res) => {
     }
 });
 
+// Delete an employee entirely
+app.delete("/api/KsrtcOtdata/:id", async (req, res) => {
+    try {
+        const user = await User.findOneAndDelete({ id: req.params.id });
+        if (!user) return res.status(404).json({ message: "Employee not found" });
+
+        res.status(200).json({ message: "Employee deleted successfully" });
+    } catch (error) {
+        res.status(500).json({ message: "Error deleting employee" });
+    }
+});
+
 // Reset data (retain only IDs)
 app.post("/api/KsrtcOtdata/resetData", async (req, res) => {
     try {
